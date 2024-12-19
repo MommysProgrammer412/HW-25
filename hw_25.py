@@ -1,4 +1,4 @@
-from marvel import full_dict as fd
+from marvel import full_dict as fd # задание 1
 from pprint import pprint
 '''
 1. Импортируйте full_dict из файла Marvel.py.
@@ -14,7 +14,7 @@ from pprint import pprint
 11. Сделайте красивый вывод результатов с использованием pprint, добавив подпись о том, какое задание выполнено.
 '''
 
-user_nums = list(map(lambda x: int(x) if x.isdigit() else None, input("Введите числа через пробел: ").split()))
+user_nums = list(map(lambda x: int(x) if x.isdigit() else None, input("Задание 2. Введите числа через пробел: ").split()))# задание 2
 
 new_fd = {}
 for key, values in fd.items():
@@ -22,4 +22,27 @@ for key, values in fd.items():
     new_dict.update(values)
     new_fd[key] = new_dict
 
-filter_dict = dict(filter(lambda x: int(x[0]) in user_nums, new_fd.items()))
+filter_dict = dict(filter(lambda x: int(x[0]) in user_nums, new_fd.items()))# задание 3
+print('Задание 3:')
+pprint(filter_dict, sort_dicts=False)
+'''
+1. словарь словарей c сортированными id
+2. set режиссеров (? всех или из id)
+4. словарь КОПИЯ fd с сторками годов
+5. словарь с отфильтрованными фильмами по началу с буквы ч
+6. словарь КОПИЯ fd как 5. на свое усмотрение
+7. словарь КОПИЯ fd как 5. на свое усмотрение по 2 параметрам сортировки
+8. pprint
+'''
+
+number_4 = set(num['director'] for num in filter_dict.values() if num['director'])#задание 4
+print('Задание 4:', number_4)
+
+number_5 = {key: {**value, 'year': str(value['year'])} for key, value in fd.items()}#задание 5
+print('Задание 5:')
+pprint(number_5, sort_dicts=False)
+
+number_6 = dict(filter(lambda x: x[1].get('title') and x[1]['title'].startswith('Ч'), number_5.items()))  # задание 6
+print('Задание 6:')
+pprint(number_6, sort_dicts=False)
+
