@@ -46,3 +46,14 @@ number_6 = dict(filter(lambda x: x[1].get('title') and x[1]['title'].startswith(
 print('Задание 6:')
 pprint(number_6, sort_dicts=False)
 
+number_7 = dict(sorted(fd.items(), key=lambda item: 9999 if item[1]['year'] == 'TBA' else int(item[1]['year'])))  # задание 7: сортировка по году
+print('Задание 7, сортировка по году:')
+pprint(number_7, sort_dicts=False)
+
+number_8 = dict(sorted(fd.items(), key=lambda item: (
+    0 if item[1]['director'] == 'Джон Фавро' else 1, # сначала фильмы Джона Фавро
+    9999 if item[1]['year'] == 'TBA' else int(item[1]['year']),# затем сортировка по году
+    item[1]['director']  # сортировка по режиссеру для не-Фавро фильмов
+)))# задание 8: сортировка по режиссеру (Джон Фавро в начале) и году
+print('Задание 8, сортировка по режиссеру (Джон Фавро в начале) и году:')
+pprint(number_8, sort_dicts=False)
